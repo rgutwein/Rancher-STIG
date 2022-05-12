@@ -106,7 +106,7 @@ For each cluster in  "EXPLORE CLUSTER":
 NIST 800-53r4 References:
 
 ```bash
-AU-3; AU-3(1); AU-3(2); AU-9 (3); AU-12.c; CM-1.a.2; CM-3.d; CM-5(5) (b);CM-6.b
+AU-3; AU-3(1); AU-3(2); AU-9 (3); AU-12.c; CM-1.a.2; CM-3.d; CM-5(5)(b); CM-6.b
 ```
 
 # V-252847 - CAT II - Never automatically remove or disable emergency accounts
