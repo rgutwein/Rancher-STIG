@@ -1,0 +1,634 @@
+Vuln ID,Severity,Group Title,Rule ID,STIG ID,Rule Title,Discussion,IA Controls,Check Content,Fix Text,CCI,NIST SP 800-53 Revision 4 References,Legacy
+V-252843,high,SRG-APP-000023-CTR-000055,SV-252843r819979_rule,CNTR-RM-000030,"Rancher MCM must use a centralized user management solution to support account management functions. For accounts using password authentication, the container platform must use FIPS-validated SHA-2 or later protocol to protect the integrity of the password authentication process.","RBAC Integration and Authn/Authz
+
+Centralized authentication services provide additional functionality fulfilling security requirements:
+- Multi-factor authentication, which is compatible with Rancher MCM
+- Disabling users after a period of time
+- Storage and transmission of secure information is encrypted
+- Secure authentication protocols such as LDAP over TLS, or LDAPS using FIPS 140-2 approved encryption modules
+- PKI based authentication
+
+Rancher MCM can integrate with external centralized authentication but does not offer a native solution. The authentication mechanism needs to be initially enabled and configured. The proxy authenticates users and forwards their requests to Kubernetes clusters using a service account.
+
+Satisfies: SRG-APP-000023-CTR-000055, SRG-APP-000024-CTR-000060, SRG-APP-000027-CTR-000075, SRG-APP-000029-CTR-000085, SRG-APP-000033-CTR-000095, SRG-APP-000038-CTR-000105, SRG-APP-000065-CTR-000115, SRG-APP-000099-CTR-000190, SRG-APP-000111-CTR-000220, SRG-APP-000118-CTR-000240, SRG-APP-000119-CTR-000245, SRG-APP-000120-CTR-000250, SRG-APP-000121-CTR-000255, SRG-APP-000122-CTR-000260, SRG-APP-000123-CTR-000265, SRG-APP-000126-CTR-000275, SRG-APP-000133-CTR-000310, SRG-APP-000148-CTR-000335, SRG-APP-000148-CTR-000340, SRG-APP-000148-CTR-000345, SRG-APP-000148-CTR-000350, SRG-APP-000149-CTR-000355, SRG-APP-000150-CTR-000360, SRG-APP-000156-CTR-000380, SRG-APP-000163-CTR-000395, SRG-APP-000164-CTR-000400, SRG-APP-000165-CTR-000405, SRG-APP-000166-CTR-000410, SRG-APP-000167-CTR-000415, SRG-APP-000168-CTR-000420, SRG-APP-000169-CTR-000425, SRG-APP-000170-CTR-000430, SRG-APP-000171-CTR-000435, SRG-APP-000172-CTR-000440, SRG-APP-000173-CTR-000445, SRG-APP-000174-CTR-000450, SRG-APP-000177-CTR-000465, SRG-APP-000178-CTR-000470, SRG-APP-000243-CTR-000595, SRG-APP-000317-CTR-000735, SRG-APP-000340-CTR-000770, SRG-APP-000345-CTR-000785, SRG-APP-000378-CTR-000880, SRG-APP-000378-CTR-000885, SRG-APP-000378-CTR-000890, SRG-APP-000380-CTR-000900, SRG-APP-000381-CTR-000905, SRG-APP-000384-CTR-000915, SRG-APP-000319-CTR-000745",,"RBAC Integration and Authn/Authz
+
+View and modify authentication settings through the Rancher MCM UI.
+
+Navigate to Triple Bar Symbol(Global) >> Users & Authentication >> Auth Provider.
+
+This screen shows the authentication mechanism that is configured. If no authentication mechanism is configured or disabled, this is a finding.","RBAC Integration and Authn/Authz
+
+Navigate to Triple Bar Symbol(Global) >> Users & Authentication >> Auth Provider.
+
+From this screen the authentication mechanism can be selected and configured. 
+
+This STIG is written and tested with KeyCloak and not included with Rancher MCM. Installation instructions for KeyCloak can be found here:
+
+https://www.keycloak.org/getting-started/getting-started-kube","CCI-000015
+The organization employs automated mechanisms to support the information system account management functions.
+NIST SP 800-53 :: AC-2 (1)
+NIST SP 800-53A :: AC-2 (1).1
+NIST SP 800-53 Revision 4 :: AC-2 (1)
+
+CCI-000016
+The information system automatically removes or disables temporary accounts after an organization-defined time period for each type of account.
+NIST SP 800-53 :: AC-2 (2)
+NIST SP 800-53A :: AC-2 (2).1 (ii)
+NIST SP 800-53 Revision 4 :: AC-2 (2)
+
+CCI-000044
+The information system enforces the organization-defined limit of consecutive invalid logon attempts by a user during the organization-defined time period.
+NIST SP 800-53 :: AC-7 a
+NIST SP 800-53A :: AC-7.1 (ii)
+NIST SP 800-53 Revision 4 :: AC-7 a
+
+CCI-000134
+The information system generates audit records containing information that establishes the outcome of the event.
+NIST SP 800-53 :: AU-3
+NIST SP 800-53A :: AU-3.1
+NIST SP 800-53 Revision 4 :: AU-3
+
+CCI-000154
+The information system provides the capability to centrally review and analyze audit records from multiple components within the system.
+NIST SP 800-53 :: AU-6 (4)
+NIST SP 800-53A :: AU-6 (4).1
+NIST SP 800-53 Revision 4 :: AU-6 (4)
+
+CCI-000162
+The information system protects audit information from unauthorized access.
+NIST SP 800-53 :: AU-9
+NIST SP 800-53A :: AU-9.1
+NIST SP 800-53 Revision 4 :: AU-9
+
+CCI-000163
+The information system protects audit information from unauthorized modification.
+NIST SP 800-53 :: AU-9
+NIST SP 800-53A :: AU-9.1
+NIST SP 800-53 Revision 4 :: AU-9
+
+CCI-000164
+The information system protects audit information from unauthorized deletion.
+NIST SP 800-53 :: AU-9
+NIST SP 800-53A :: AU-9.1
+NIST SP 800-53 Revision 4 :: AU-9
+
+CCI-000187
+The information system, for PKI-based authentication, maps the authenticated identity to the account of the individual or group.
+NIST SP 800-53 :: IA-5 (2)
+NIST SP 800-53A :: IA-5 (2).1
+NIST SP 800-53 Revision 4 :: IA-5 (2) (c)
+
+CCI-000192
+The information system enforces password complexity by the minimum number of upper case characters used.
+NIST SP 800-53 :: IA-5 (1) (a)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (a)
+
+CCI-000193
+The information system enforces password complexity by the minimum number of lower case characters used.
+NIST SP 800-53 :: IA-5 (1) (a)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (a)
+
+CCI-000194
+The information system enforces password complexity by the minimum number of numeric characters used.
+NIST SP 800-53 :: IA-5 (1) (a)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (a)
+
+CCI-000195
+The information system, for password-based authentication, when new passwords are created, enforces that at least an organization-defined number of characters are changed.
+NIST SP 800-53 :: IA-5 (1) (b)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (b)
+
+CCI-000196
+The information system, for password-based authentication, stores only encrypted representations of passwords.
+NIST SP 800-53 :: IA-5 (1) (c)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (c)
+
+CCI-000197
+The information system, for password-based authentication, transmits only encrypted representations of passwords.
+NIST SP 800-53 :: IA-5 (1) (c)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (c)
+
+CCI-000198
+The information system enforces minimum password lifetime restrictions.
+NIST SP 800-53 :: IA-5 (1) (d)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (d)
+
+CCI-000199
+The information system enforces maximum password lifetime restrictions.
+NIST SP 800-53 :: IA-5 (1) (d)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (d)
+
+CCI-000200
+The information system prohibits password reuse for the organization defined number of generations.
+NIST SP 800-53 :: IA-5 (1) (e)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (e)
+
+CCI-000205
+The information system enforces minimum password length.
+NIST SP 800-53 :: IA-5 (1) (a)
+NIST SP 800-53A :: IA-5 (1).1 (i)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (a)
+
+CCI-000206
+The information system obscures feedback of authentication information during the authentication process to protect the information from possible exploitation/use by unauthorized individuals.
+NIST SP 800-53 :: IA-6
+NIST SP 800-53A :: IA-6.1
+NIST SP 800-53 Revision 4 :: IA-6
+
+CCI-000213
+The information system enforces approved authorizations for logical access to information and system resources in accordance with applicable access control policies.
+NIST SP 800-53 :: AC-3
+NIST SP 800-53A :: AC-3.1
+NIST SP 800-53 Revision 4 :: AC-3
+
+CCI-000764
+The information system uniquely identifies and authenticates organizational users (or processes acting on behalf of organizational users).
+NIST SP 800-53 :: IA-2
+NIST SP 800-53A :: IA-2.1
+NIST SP 800-53 Revision 4 :: IA-2
+
+CCI-000765
+The information system implements multifactor authentication for network access to privileged accounts.
+NIST SP 800-53 :: IA-2 (1)
+NIST SP 800-53A :: IA-2 (1).1
+NIST SP 800-53 Revision 4 :: IA-2 (1)
+
+CCI-000766
+The information system implements multifactor authentication for network access to non-privileged accounts.
+NIST SP 800-53 :: IA-2 (2)
+NIST SP 800-53A :: IA-2 (2).1
+NIST SP 800-53 Revision 4 :: IA-2 (2)
+
+CCI-000795
+The organization manages information system identifiers by disabling the identifier after an organization defined time period of inactivity.
+NIST SP 800-53 :: IA-4 e
+NIST SP 800-53A :: IA-4.1 (iii)
+NIST SP 800-53 Revision 4 :: IA-4 e
+
+CCI-001090
+The information system prevents unauthorized and unintended information transfer via shared system resources.
+NIST SP 800-53 :: SC-4
+NIST SP 800-53A :: SC-4.1
+NIST SP 800-53 Revision 4 :: SC-4
+
+CCI-001350
+The information system implements cryptographic mechanisms to protect the integrity of audit information.
+NIST SP 800-53 :: AU-9 (3)
+NIST SP 800-53A :: AU-9 (3).1
+NIST SP 800-53 Revision 4 :: AU-9 (3)
+
+CCI-001368
+The information system enforces approved authorizations for controlling the flow of information within the system based on organization-defined information flow control policies.
+NIST SP 800-53 :: AC-4
+NIST SP 800-53A :: AC-4.1 (iii)
+NIST SP 800-53 Revision 4 :: AC-4
+
+CCI-001403
+The information system automatically audits account modification actions.
+NIST SP 800-53 :: AC-2 (4)
+NIST SP 800-53A :: AC-2 (4).1 (i&ii)
+NIST SP 800-53 Revision 4 :: AC-2 (4)
+
+CCI-001493
+The information system protects audit tools from unauthorized access.
+NIST SP 800-53 :: AU-9
+NIST SP 800-53A :: AU-9.1
+NIST SP 800-53 Revision 4 :: AU-9
+
+CCI-001494
+The information system protects audit tools from unauthorized modification.
+NIST SP 800-53 :: AU-9
+NIST SP 800-53A :: AU-9.1
+NIST SP 800-53 Revision 4 :: AU-9
+
+CCI-001495
+The information system protects audit tools from unauthorized deletion.
+NIST SP 800-53 :: AU-9
+NIST SP 800-53A :: AU-9.1
+NIST SP 800-53 Revision 4 :: AU-9
+
+CCI-001499
+The organization limits privileges to change software resident within software libraries.
+NIST SP 800-53 :: CM-5 (6)
+NIST SP 800-53A :: CM-5 (6).1
+NIST SP 800-53 Revision 4 :: CM-5 (6)
+
+CCI-001619
+The information system enforces password complexity by the minimum number of special characters used.
+NIST SP 800-53 :: IA-5 (1) (a)
+NIST SP 800-53A :: IA-5 (1).1 (v)
+NIST SP 800-53 Revision 4 :: IA-5 (1) (a)
+
+CCI-001734
+The organization defines the restrictions to be followed on the use of open source software.
+NIST SP 800-53 Revision 4 :: CM-10 (1)
+
+CCI-001782
+The organization updates the information system component inventory per organization-defined frequency.
+NIST SP 800-53 Revision 4 :: CM-8 b
+
+CCI-001783
+The organization defines the personnel or roles to be notified when unauthorized hardware, software, and firmware components are detected within the information system.
+NIST SP 800-53 Revision 4 :: CM-8 (3) (b)
+
+CCI-001784
+When unauthorized hardware, software, and firmware components are detected within the information system, the organization takes action to disable network access by such components, isolates the components, and/or notifies organization-defined personnel or roles.
+NIST SP 800-53 Revision 4 :: CM-8 (3) (b)
+
+CCI-001911
+The organization defines the selectable event criteria to be used as the basis for changes to the auditing to be performed on organization-defined information system components, by organization-defined individuals or roles, within organization-defined time thresholds.
+NIST SP 800-53 Revision 4 :: AU-12 (3)
+
+CCI-002112
+The organization assigns account managers for information system accounts.
+NIST SP 800-53 Revision 4 :: AC-2 b
+
+CCI-002205
+The information system uniquely identifies and authenticates source by organization, system, application, and/or individual for information transfer.
+NIST SP 800-53 Revision 4 :: AC-4 (17)
+
+CCI-002208
+The information system uniquely authenticates destination by organization, system, application, and/or individual for information transfer.
+NIST SP 800-53 Revision 4 :: AC-4 (17)
+
+",AC-2 b;AC-2 (1);AC-2 (2);AC-2 (4);AC-3;AC-4;AC-4 (17);AC-7 a;AU-3;AU-6 (4);AU-9;AU-9 (3);AU-12 (3);CM-5 (6);CM-8 b;CM-8 (3) (b);CM-10 (1);IA-2;IA-2 (1);IA-2 (2);IA-4 e;IA-5 (1) (a);IA-5 (1) (b);IA-5 (1) (c);IA-5 (1) (d);IA-5 (1) (e);IA-5 (2) (c);IA-6;SC-4,
+V-252844,medium,SRG-APP-000026-CTR-000070,SV-252844r819982_rule,CNTR-RM-000060,Rancher MCM must generate audit records for all DoD-defined auditable events within all components in the platform.,"Audit logs must be enabled.
+
+Rancher MCM provides audit record generation capabilities. Audit logs capture what happened, when it happened, who initiated it, and what cluster it affected to ensure non-repudiation of actions taken.
+
+Audit logging at the platform level also needs to be enabled. This will need to be done through the Kubernetes engine and is not always configurable through the Rancher MCM application.
+
+Audit log verbosity can be set to one of the following levels:
+0 - Disable audit log (default setting).
+1 - Log event metadata.
+2 - Log event metadata and request body.
+3 - Log event metadata, request body, and response body. Each log transaction for a request/response pair uses the same auditID value. 
+
+Cluster administrators with authorized access can view logs produced by the Rancher MCM server. Audit and normal application logs generated by Rancher MCM can be forwarded to a remote log aggregation system for use by authorized viewers as well. This system can in turn be configured for further log processing, monitoring, backup, and alerting. This aggregation also should include failover and buffering in the event that a logging subsystem fails. The logging mechanism of the individual server is independent and will kill the server process if this logging mechanism fails.
+
+To meet the requirements of this control, an administrator with access to the local cluster configuration must add the 'AUDIT_LOG' environment variable with a level of at least  2 in the Rancher MCM deployment configuration. This setting will persist between restarts of the application.
+
+Satisfies: SRG-APP-000026-CTR-000070, SRG-APP-000033-CTR-000100, SRG-APP-000089-CTR-000150, SRG-APP-000090-CTR-000155, SRG-APP-000091-CTR-000160, SRG-APP-000092-CTR-000165, SRG-APP-000095-CTR-000170, SRG-APP-000096-CTR-000175, SRG-APP-000109-CTR-000215, SRG-APP-000343-CTR-000780, SRG-APP-000358-CTR-000805, SRG-APP-000374-CTR-000865, SRG-APP-000375-CTR-000870",,"Ensure audit logging is enabled:
+
+Navigate to Triple Bar Symbol(Global) >>  <local cluster> 
+-From the drop down next to the cluster name, select ""cattle-system"".
+-Click ""deployments"" under Workload menu item.
+-Select ""rancher"" in the Deployments section.
+-Click the three dot config menu on the right.
+-Choose ""Edit Config"".
+-Scroll down to the ""Environment Variables"" section.
+
+If the  'AUDIT_LEVEL' environment variable does not exist or < Level 2, this is a finding.","Ensure audit logging is enabled:
+
+Navigate to Triple Bar Symbol(Global) >>  <local cluster> 
+-From the drop down next to the cluster name, select 'cattle-system'.
+-Click ""deployments"" under Workload menu item.
+-Select ""rancher"" in the Deployments section.
+-Click the three dot config menu on the right.
+-Choose ""Edit Config"".
+-Scroll down to the ""Environment Variables"" section.
+-Change the AUDIT_LEVEL value to ""2"" or ""3"" and then click ""Save"".
+
+If the variable does not exist:
+-Click ""Add Variable"".
+-Keep Default key/Value Pair as ""Type""
+-Add ""AUDIT_LEVEL"" as Variable Name.
+-Input ""2,3"" for a value.
+-Click ""Save"".","CCI-000018
+The information system automatically audits account creation actions.
+NIST SP 800-53 :: AC-2 (4)
+NIST SP 800-53A :: AC-2 (4).1 (i&ii)
+NIST SP 800-53 Revision 4 :: AC-2 (4)
+
+CCI-000130
+The information system generates audit records containing information that establishes what type of event occurred.
+NIST SP 800-53 :: AU-3
+NIST SP 800-53A :: AU-3.1
+NIST SP 800-53 Revision 4 :: AU-3
+
+CCI-000131
+The information system generates audit records containing information that establishes when an event occurred.
+NIST SP 800-53 :: AU-3
+NIST SP 800-53A :: AU-3.1
+NIST SP 800-53 Revision 4 :: AU-3
+
+CCI-000140
+The information system takes organization-defined actions upon audit failure (e.g., shut down information system, overwrite oldest audit records, stop generating audit records).
+NIST SP 800-53 :: AU-5 b
+NIST SP 800-53A :: AU-5.1 (iv)
+NIST SP 800-53 Revision 4 :: AU-5 b
+
+CCI-000169
+The information system provides audit record generation capability for the auditable events defined in AU-2 a at organization-defined information system components.
+NIST SP 800-53 :: AU-12 a
+NIST SP 800-53A :: AU-12.1 (ii)
+NIST SP 800-53 Revision 4 :: AU-12 a
+
+CCI-000171
+The information system allows organization-defined personnel or roles to select which auditable events are to be audited by specific components of the information system.
+NIST SP 800-53 :: AU-12 b
+NIST SP 800-53A :: AU-12.1 (iii)
+NIST SP 800-53 Revision 4 :: AU-12 b
+
+CCI-000172
+The information system generates audit records for the events defined in AU-2 d with the content defined in AU-3.
+NIST SP 800-53 :: AU-12 c
+NIST SP 800-53A :: AU-12.1 (iv)
+NIST SP 800-53 Revision 4 :: AU-12 c
+
+CCI-000213
+The information system enforces approved authorizations for logical access to information and system resources in accordance with applicable access control policies.
+NIST SP 800-53 :: AC-3
+NIST SP 800-53A :: AC-3.1
+NIST SP 800-53 Revision 4 :: AC-3
+
+CCI-001464
+The information system initiates session audits at system start-up.
+NIST SP 800-53 :: AU-14 (1)
+NIST SP 800-53A :: AU-14 (1).1
+NIST SP 800-53 Revision 4 :: AU-14 (1)
+
+CCI-001821
+The organization defines the organizational personnel or role to whom the configuration management policy is to be disseminated.
+NIST SP 800-53 Revision 4 :: CM-1 a 1
+
+CCI-001859
+The organization defines the network communication traffic volume thresholds reflecting limits on auditing capacity, specifying when the information system will reject or delay network traffic that exceed those thresholds.
+NIST SP 800-53 Revision 4 :: AU-5 (3)
+
+CCI-001860
+The organization defines the audit failures which, should they occur, will invoke an organization-defined system mode.
+NIST SP 800-53 Revision 4 :: AU-5 (4)
+
+CCI-002204
+The organization defines security policy which prohibits the transfer of unsanctioned information between different security domains.
+NIST SP 800-53 Revision 4 :: AC-4 (15)
+
+",AC-2 (4);AC-3;AC-4 (15);AU-3;AU-5 b;AU-5 (3);AU-5 (4);AU-12 a;AU-12 b;AU-12 c;AU-14 (1);CM-1 a 1,
+V-252845,medium,SRG-APP-000028-CTR-000080,SV-252845r822506_rule,CNTR-RM-000080,"When allowed by the central authentication system, the default role assigned to a user must be User-Base.",Rancher MCM uses roles for authentication. It is necessary to ensure the proper roles and permissions are configured. The role used by default does not ensure least privilege. The default role needs to be changed to allow least privilege access.,,"Verify User-Base is the default assigned role:
+-From the GUI, navigate to Triple Bar Symbol(Global) >> Users & Authentication >> Roles. 
+-Click ""Standard User"".
+-At the top right, click the three dots, and then choose ""Edit Config"".
+-Under ""New User Default"", ensure ""No"" is selected. 
+-Click ""User-Base"".
+-At the top right, click the three dots, and then ""Edit Config"".
+-Under ""New User Default"", ensure ""Yes"" is selected.
+
+If ""No"" is not selected for Standard User, this is a finding. 
+
+If ""Yes"" is not selected for User-Base, this is a finding.","From the GUI, navigate to Triple Bar Symbol(Global) >> Users & Authentication >> Roles.
+-Click ""Standard User"".
+-At the top right, click the three dots, and then ""Edit Config"".
+-Under ""New User Default"", select ""No"" and click ""Save"".
+-Click ""User-Base"".
+-At the top right, click the three dots, and then click ""Edit Config"".
+-Under ""New User Default"", select ""Yes"", and then click ""Save"".","CCI-001404
+The information system automatically audits account disabling actions.
+NIST SP 800-53 :: AC-2 (4)
+NIST SP 800-53A :: AC-2 (4).1 (i&ii)
+NIST SP 800-53 Revision 4 :: AC-2 (4)
+
+",AC-2 (4),
+V-252846,medium,SRG-APP-000098-CTR-000185,SV-252846r819988_rule,CNTR-RM-000250,"Rancher MCM must allocate audit record storage and generate audit records associated with events, users, and groups.","Rancher logging capability and optional aggregation
+
+The Rancher server automatically logs everything at the container level. These logs are stored on the system which are then optionally picked up by further log aggregation systems.
+
+Cluster administrators with authorized access can view logs produced by the Rancher server as well as change logging settings to trigger a new deployment with the new settings. Audit and normal application logs generated by Rancher can be forwarded to a remote log aggregation system for use by authorized viewers as well. This system can in turn be configured for further log processing, monitoring, backup, and alerting. This aggregation also must include failover and buffering in the event a logging subsystem fails. The logging mechanism of the individual server is independent and will kill the server process if this logging mechanism fails.
+
+Rancher provides audit record generation capabilities. Audit logs capture what happened, when it happened, who initiated it, and what cluster it affected to ensure non-repudiation of actions taken.
+
+Audit log verbosity can be set to one of the following levels:
+0 - Disable audit log (default setting).
+1 - Log event metadata.
+2 - Log event metadata and request body.
+3 - Log event metadata, request body, and response body. Each log transaction for a request/response pair uses the same auditID value. 
+
+Application logs can be set to one of the following levels:
+info = Logs informational messages. This is the default log level.
+debug = Logs more detailed messages that can be used to debug.
+trace = Logs very detailed messages on internal functions. This is very verbose and can contain sensitive information.
+
+Log metadata includes the following information (sample):
+
+{
+
+  'auditID': '30022177-9e2e-43d1-b0d0-06ef9d3db183',
+
+  'requestURI': '/v3/schemas',
+
+  'sourceIPs': ['::1'],
+
+  'user': {
+
+    'name': 'user-f4tt2',
+
+    'group': ['system:authenticated']
+
+  },
+
+  'verb': 'GET',
+
+  'stage': 'RequestReceived',
+
+  'stageTimestamp': '2018-07-20 10:22:43 +0800'
+
+  'requestBody': {
+
+    [redacted]
+
+  }
+
+}
+
+Satisfies: SRG-APP-000098-CTR-000185, SRG-APP-000100-CTR-000195, SRG-APP-000100-CTR-000200, SRG-APP-000101-CTR-000205, SRG-APP-000181-CTR-000485, SRG-APP-000290-CTR-000670, SRG-APP-000357-CTR-000800, SRG-APP-000359-CTR-000810, SRG-APP-000360-CTR-000815, SRG-APP-000492-CTR-001220, SRG-APP-000493-CTR-001225, SRG-APP-000494-CTR-001230, SRG-APP-000495-CTR-001235, SRG-APP-000496-CTR-001240, SRG-APP-000497-CTR-001245, SRG-APP-000498-CTR-001250, SRG-APP-000499-CTR-001255, SRG-APP-000500-CTR-001260, SRG-APP-000501-CTR-001265, SRG-APP-000502-CTR-001270, SRG-APP-000503-CTR-001275, SRG-APP-000504-CTR-001280, SRG-APP-000505-CTR-001285, SRG-APP-000506-CTR-001290, SRG-APP-000507-CTR-001295, SRG-APP-000508-CTR-001300, SRG-APP-000509-CTR-001305, SRG-APP-000510-CTR-001310, SRG-APP-000516-CTR-000790",,"Ensure logging aggregation is enabled:
+Navigate to Triple Bar Symbol(Global).
+
+For each cluster in ""EXPLORE CLUSTER"":
+-Select ""Cluster"".
+-Select ""Cluster Tools"" (bottom left).
+
+This screen shows the current configuration for logging. 
+
+If the logging block has an Install button, this is a finding.","Enable log aggregation:
+Navigate to Triple Bar Symbol(Global).
+
+For each cluster in  ""EXPLORE CLUSTER"":
+-Select ""Cluster"".
+-Select ""Cluster Tools"" (bottom left).
+-In the ""Logging Block"", select ""Install"".
+-Select the newest version of logging in the dropdown. 
+-Open the ""Install into Project Dropdown"".
+-Select the Project. (Note: Kubernetes STIG requires creating new project & namespace for deployments. Using Default or System is not best practice.)
+-Click ""Next"".
+-Review the options and click ""Install"".","CCI-000133
+The information system generates audit records containing information that establishes the source of the event.
+NIST SP 800-53 :: AU-3
+NIST SP 800-53A :: AU-3.1
+NIST SP 800-53 Revision 4 :: AU-3
+
+CCI-000135
+The information system generates audit records containing the organization-defined additional, more detailed information that is to be included in the audit records.
+NIST SP 800-53 :: AU-3 (1)
+NIST SP 800-53A :: AU-3 (1).1 (ii)
+NIST SP 800-53 Revision 4 :: AU-3 (1)
+
+CCI-000172
+The information system generates audit records for the events defined in AU-2 d with the content defined in AU-3.
+NIST SP 800-53 :: AU-12 c
+NIST SP 800-53A :: AU-12.1 (iv)
+NIST SP 800-53 Revision 4 :: AU-12 c
+
+CCI-000366
+The organization implements the security configuration settings.
+NIST SP 800-53 :: CM-6 b
+NIST SP 800-53A :: CM-6.1 (iv)
+NIST SP 800-53 Revision 4 :: CM-6 b
+
+CCI-001487
+The information system generates audit records containing information that establishes the identity of any individuals or subjects associated with the event.
+NIST SP 800-53 :: AU-3
+NIST SP 800-53A :: AU-3.1
+NIST SP 800-53 Revision 4 :: AU-3
+
+CCI-001496
+The information system implements cryptographic mechanisms to protect the integrity of audit tools.
+NIST SP 800-53 :: AU-9 (3)
+NIST SP 800-53A :: AU-9 (3).1
+NIST SP 800-53 Revision 4 :: AU-9 (3)
+
+CCI-001819
+The organization implements approved configuration-controlled changes to the information system.
+NIST SP 800-53 Revision 4 :: CM-3 d
+
+CCI-001825
+The organization disseminates to organization defined personnel or roles the procedures to facilitate the implementation of the configuration management policy and associated configuration management controls.
+NIST SP 800-53 Revision 4 :: CM-1 a 2
+
+CCI-001828
+The organization defines frequency to reevaluate information system privileges.
+NIST SP 800-53 Revision 4 :: CM-5 (5) (b)
+
+CCI-001846
+The organization defines information system components that will generate the audit records which are to be captured for centralized management of the content.
+NIST SP 800-53 Revision 4 :: AU-3 (2)
+
+",AU-3;AU-3 (1);AU-3 (2);AU-9 (3);AU-12 c;CM-1 a 2;CM-3 d;CM-5 (5) (b);CM-6 b,
+V-252847,medium,SRG-APP-000234-CTR-000590,SV-252847r819991_rule,CNTR-RM-000850,Rancher MCM must never automatically remove or disable emergency accounts.,"Emergency accounts are administrator accounts that are established in response to crisis situations where the need for rapid account activation is required. Therefore, emergency account activation may bypass normal account authorization processes. If these accounts are automatically disabled, system maintenance during emergencies may not be possible, thus adversely affecting system availability.
+
+Emergency accounts are different from infrequently used accounts (i.e., local logon accounts used by system administrators when network or normal logon/access is not available). Infrequently used accounts also remain available and are not subject to automatic termination dates. However, an emergency account is normally a different account that is created for use by vendors or system maintainers.
+
+To address access requirements, many application developers choose to integrate their applications with enterprise-level authentication/access mechanisms that meet or exceed access control policy requirements. Such integration allows the application developer to off-load those access control functions and focus on core application features and functionality.
+
+Local Admin user should exist so that Rancher can be used if the external authentication service encounters issues.",,"Ensure local emergency admin account has not been removed and is the only Local account. 
+
+Navigate to the Triple Bar Symbol(Global) >> Users & Authentication. In the left navigation menu, click ""Users"".
+
+There should be only one local account and that account should have administrator role.
+
+If no local administrator account exists or there is more than one local account, this is a finding.","Ensure local emergency admin account has not been removed and is the only Local account. 
+
+Navigate to the Triple Bar Symbol(Global) >> Users & Authentication. In the left navigation menu, click ""Users"".
+
+To Create a User:
+-Click ""Create"".
+-Complete the ""Add User"" form. Ensure Global Permissions are set to ""Administrator"".
+-Click ""Create"".
+
+To Delete a User:
+-Select the user and click ""Delete"".","CCI-001682
+The information system automatically removes or disables emergency accounts after an organization-defined time period for each type of account.
+NIST SP 800-53 :: AC-2 (2)
+NIST SP 800-53A :: AC-2 (2).1 (ii)
+NIST SP 800-53 Revision 4 :: AC-2 (2)
+
+",AC-2 (2),
+V-252848,medium,SRG-APP-000318-CTR-000740,SV-252848r819994_rule,CNTR-RM-000970,Rancher MCM must enforce organization-defined circumstances and/or usage conditions for organization-defined accounts.,Rancher MCM must verify the certificate used for Rancher's ingress is a valid DOD certificate. This is achieved by verifying the helm installation contains correct parameters.,,"Verify helm installation contains correct parameters:
+Navigate to Triple Bar Symbol(Global) >>  <local cluster>.
+From the kubectl shell (>_) Execute:
+`helm get values rancher -n cattle-system`
+
+The output must contain:
+```
+privateCA: true
+ingress:
+tls:
+source: secret
+```
+If the output source is not ""secret"", this is a finding.
+
+Verify contents of certificates are correct: 
+From the console, type:
+kubectl -n cattle-system get secret tls-rancher-ingress -o 'jsonpath={.data.tls\.crt}' | base64 --decode | openssl x509 -noout -text
+
+kubectl -n cattle-system get secret tls-ca -o 'jsonpath={.data.cacerts\.pem}' | base64 --decode | openssl x509 -noout -text","Update the secrets to contain valid certificates.
+
+Put the correct and valid DOD certificate and key in files called ""tls.crt"" and ""tls.key"", respectively, and then run:
+kubectl -n cattle-system create secret tls tls-rancher-ingress \  --cert=tls.crt \   --key=tls.key                         
+
+Upload the CA required for the certs by creating another file called ""cacerts.pem"" and running: 
+kubectl -n cattle-system create secret generic tls-ca \   --from-file=cacerts.pem=./cacerts.pem 
+
+The helm chart values need to be updated to include the check section: 
+privateCA: true   
+ingress:            
+tls:                                                                        
+source: secret   
+
+Re-run helm upgrade with the new values for the certs to take effect.","CCI-002115
+The organization specifies authorized users of the information system.
+NIST SP 800-53 Revision 4 :: AC-2 d
+
+",AC-2 d,
+V-252849,high,SRG-APP-000645-CTR-001410,SV-252849r819997_rule,CNTR-RM-001730,Rancher MCM must prohibit or restrict the use of protocols that transmit unencrypted authentication information or use flawed cryptographic algorithms for transmission.,"The container platform and its components will adhere to NIST 800-52R2. To ensure that traffic coming through the ingress controller is re-encrypted internally, switch off port 80 on the service object and direct ingress traffic to port 443 over HTTPS.",,"Navigate to Triple Bar Symbol(Global) >>  <local cluster>.
+From the kubectl shell (>_) execute:
+kubectl get ingress -n cattle-system rancher -o yaml
+
+verify:
+spec:
+  rules:
+  - host: rancher.example.com < Caution-http://rancher.example.com > 
+    http:
+      paths:
+      - backend:
+          service:
+            name: rancher
+            port:
+              number: 443
+
+kubectl get svc rancher -n cattle-system -o yaml
+Verify:
+spec:
+  clusterIP: 10.43.145.4
+  clusterIPs:
+  - 10.43.145.4
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: https-internal
+    port: 443
+    protocol: TCP
+    targetPort: 443
+
+If the output does not match the above, this is a finding.","From the dropdown select Global >>  <local cluster>.
+From the kubectl shell (>_) execute the following:
+
+kubectl patch -n cattle-system service rancher -p '{""spec"":{""ports"":[{""port"":443,""targetPort"":443}]}}'
+export RANCHER_HOSTNAME=rancher.disa-eval-2-6.tomatodamato.com < Caution-http://rancher.disa-eval-2-6.tomatodamato.com > 
+kubectl -n cattle-system patch ingress rancher -p ""{\""metadata\"":{\""annotations\"":{\""nginx.ingress.Kubernetes.io/backend-protocol\ < Caution-http://nginx.ingress.Kubernetes.io/backend-protocol\ > "":\""HTTPS\""}},\""spec\"":{\""rules\"":[{\""host\"":\""$RANCHER_HOSTNAME\"",\""http\"":{\""paths\"":[{\""backend\"":{\""service\"":{\""name\"":\""rancher\"",\""port\"":{\""number\"":443}}},\""pathType\"":\""ImplementationSpecific\""}]}}]}}""
+kubectl patch -n cattle-system service rancher --type=json -p '[{""op"":""remove"",""path"":""/spec/ports/0""}]'","CCI-000382
+The organization configures the information system to prohibit or restrict the use of organization defined functions, ports, protocols, and/or services.
+NIST SP 800-53 :: CM-7
+NIST SP 800-53A :: CM-7.1 (iii)
+NIST SP 800-53 Revision 4 :: CM-7 b
+
+",CM-7 b,
